@@ -1,0 +1,47 @@
+1>script to accept number and print triangle pattern according to the given number of rows
+#!/bin/sh
+echo "Enter Number"
+read x
+a=1
+while [ "$a" -le $x ]    
+do
+        b=1
+   while [ "$b" -le  $a ]
+   do
+      echo -n "$b "
+      b=`expr $b + 1`
+   done
+   echo
+   a=`expr $a + 1`
+done
+
+2>script to accept argument and print boolean if it is true or false otherwise, print Not Boolean using case
+#!/bin/sh
+echo "Enter something"
+read str
+case $str in
+        "True" | "False" | "true" | "false" )
+                echo "Boolean"
+                ;;
+        *)
+                echo "Not Boolean"
+                ;;
+esac
+3>script to find files with extension txt that contains the keyword hello and then move files to another directory
+#!/bin/sh
+move ()
+{
+        mv $i hello/
+}
+for i in `find . -type f -name "*.txt" -exec grep -l "Hello" {} \; `
+do
+        move
+done
+4>script to find files that were modified 5 days ago and move it to another folder and change the file name appending date to it
+#!/bin/sh
+for i in `find totalfiles/ -type f -mtime 5 -printf "%f\n"`
+do
+
+        mv $i oldfiles/
+        mv oldfiles/$i oldfiles/`date "+%y%m%d"`_$i
+done
